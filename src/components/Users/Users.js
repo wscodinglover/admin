@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Table, Pagination, Popconfirm, Button } from 'antd';
+import { Table, Pagination, Popconfirm, Button, Input  } from 'antd';
 import { routerRedux } from 'dva/router';
 // import styles from './Users.css';
 import { PAGE_SIZE } from '../../constants';
 import UserModal from './UserModal';
+
+const Search = Input.Search;
 
 function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   const deleteHandler = (id) => {
@@ -12,13 +14,6 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
       type: 'users/remove',
       payload: id,
     });
-  }
-
-  const pageChangeHandler = (page) => {
-    dispatch(routerRedux.push({
-      pathname: '/users',
-      query: { page },
-    }));
   }
 
   const editHandler = (id, values) => {
@@ -35,13 +30,25 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
     });
   }
 
+  const searchHandler = (id) => {
+    dispatch({
+      type: 'users/search',
+      payload: id,
+    });
+  }
+
   const reloadHandler = () => {
     dispatch({
-      type: "users/reload"
-    })
+      type: 'users/reload',
+    });
   }
 
   const columns = [
+    {
+      title: 'Id',
+      dataIndex: 'id',
+      key: 'id',
+    },
     {
       title: 'Name',
       dataIndex: 'name',
@@ -75,13 +82,20 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   ];
 
   return (
-    <div >
+    <div>
       <div>
         <div style={{ margin: '20px' }}>
           <UserModal record={{}} onOk={createHandler}>
             <Button type="primary">Create User</Button>
           </UserModal>
-          <Button style={{ marginLeft: '20px' }} type="primary" onClick={reloadHandler}>Reload</Button>
+          <span style={{ marginLeft: '20px',fontSize: '20px' }}>id:
+            <Search
+              placeholder="input search id"
+              onSearch={value => searchHandler(value)}
+              style={{ width: 200 }}
+            />
+          </span>
+          <Button style={{ marginLeft: '20px' }} type="primary" onClick={reloadHandler}>All</Button>
         </div>
         <Table
           columns={columns}

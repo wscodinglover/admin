@@ -13,14 +13,23 @@ export default {
     },
   },
   effects: {
-    *fetch({ payload: { page = 1 } }, { call, put, select }) {
-      const total = yield select(state => state.users.total*1+1);
+    *fetch({ payload: { page = 1, total=100 } }, { call, put }) {
+      
       const { data, headers } = yield call(usersService.fetch, { page, total });
       yield put({
         type: 'save',
         payload: {
           list:data,
           total:data.length,
+        },
+      });
+    },
+    *search({ payload: id }, { call, put }){
+      const { data, headers } = yield call(usersService.search, id );
+      yield put({
+        type: 'save',
+        payload: {
+          list:data,
         },
       });
     },

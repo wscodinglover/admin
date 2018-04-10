@@ -5,6 +5,10 @@ export function fetch({ page, total }) {
   return request(`/api/users?_page=${page}&_limit=${total}`);
 }
 
+export function search(params) {
+  return request(`/api/users?id=${params}`);
+}
+
 export function remove(id) {
   return request(`/api/users/${id}`, {
     method: 'DELETE',
