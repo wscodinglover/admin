@@ -43,6 +43,15 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
     });
   }
 
+  const pageChangeHandler = (page) => {
+    dispatch(
+      routerRedux.push({
+        pathname: '/users',
+        query: { page },
+      })
+    );
+  }
+
   const columns = [
     {
       title: 'Id',
@@ -81,6 +90,14 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
     },
   ];
 
+  	// 定义分页对象
+  const pagination = {
+    total,
+    current,
+    pageSize: 5,
+    onChange (value) {pageChangeHandler(value)},
+  };
+  
   return (
     <div>
       <div>
@@ -88,7 +105,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
           <UserModal record={{}} onOk={createHandler}>
             <Button type="primary">Create User</Button>
           </UserModal>
-          <span style={{ marginLeft: '20px',fontSize: '20px' }}>id:
+          <span style={{ marginLeft: '20px',fontSize: '20px' }}>id :
             <Search
               placeholder="input search id"
               onSearch={value => searchHandler(value)}
@@ -102,7 +119,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
           dataSource={dataSource}
           loading={loading}
           rowKey={record => record.id}
-          pagination={{ pageSize: 5 }}
+          pagination={pagination}
         />
 
       </div>

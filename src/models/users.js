@@ -4,7 +4,7 @@ export default {
   namespace: 'users',
   state: {
     list: [],
-    total: 100,
+    total: null,
     page: null,
   },
   reducers: {
@@ -13,14 +13,24 @@ export default {
     },
   },
   effects: {
-    *fetch({ payload: { page = 1, total=100 } }, { call, put }) {
+    *fetch({ payload: { page = 1 } }, { call, put }) {
       
-      const { data, headers } = yield call(usersService.fetch, { page, total });
+      const { data, headers } = yield call(usersService.fetch, { page });
       yield put({
         type: 'save',
         payload: {
           list:data,
-          total:data.length,
+          total: parseInt(headers['x-total-count'], 10),
+          page: parseInt(page, 10),
+        },
+      });
+    },
+    *search({ payload: id }, { call, put }){
+      const { data, headers } = yield call(usersService.search, id );
+      yield put({
+        type: 'save',
+        payload: {
+          list:data,
         },
       });
     },

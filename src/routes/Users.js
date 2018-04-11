@@ -20,9 +20,9 @@ class Users extends React.Component{
         this.state={}
     }
 
-    componentWillMount(){
+    componentDidMount(){
         const { dispatch } = this.props;
-        dispatch({type: "users/reload"})
+        dispatch({type: "users/fetch", payload: 1})
     }
 
     render () {
