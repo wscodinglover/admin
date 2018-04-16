@@ -2,7 +2,7 @@ Arguments:
   E:\Program Files\nodejs\node.exe C:\Users\王帅\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js start
 
 PATH: 
-  C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;e:\Program Files\Git\cmd;E:\Program Files\nodejs\;C:\Users\王帅\node_modules\.bin;E:\php;E:\Desktop\phabricator;E:\Desktop\phabricator\arcanist\bin;e:\Ruby25-x64\bin;e:\Ruby25-x64\bin;C:\Users\王帅\AppData\Local\Microsoft\WindowsApps;;e:\Program Files (x86)\Microsoft VS Code\bin;C:\Users\王帅\AppData\Roaming\npm
+  E:\Desktop\myadmin\node_modules\.bin;C:\Users\王帅\AppData\Local\Yarn\Data\link\node_modules\.bin;E:\Desktop\myadmin\node_modules\.bin;C:\Users\王帅\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Users\王帅\AppData\Local\Yarn\bin;E:\Program Files\libexec\lib\node_modules\npm\bin\node-gyp-bin;E:\Program Files\lib\node_modules\npm\bin\node-gyp-bin;E:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;e:\Program Files\Git\cmd;E:\Program Files\nodejs\;C:\Users\王帅\node_modules\.bin;E:\Desktop\phabricator;E:\Desktop\phabricator\arcanist\bin;e:\Ruby25-x64\bin;e:\Ruby25-x64\bin;C:\Users\王帅\AppData\Local\Microsoft\WindowsApps;;e:\Program Files (x86)\Microsoft VS Code\bin;C:\Users\王帅\AppData\Roaming\npm;C:\Users\王帅\AppData\Roaming\Composer\vendor\bin
 
 Yarn version: 
   1.5.1
@@ -17,9 +17,9 @@ npm manifest:
   {
     "private": true,
     "scripts": {
-      "start": "yarn devserer && yarn dbserver",
-      "devserver": "roadhog server",
-      "dbserver":"json-server db.json -p 3000",
+      "start": "roadhog server",
+      "server":"json-server db.json -p 3000",
+      "bat":"start.bat",
       "build": "roadhog build",
       "build:dll": "roadhog buildDll",
       "test": "roadhog test",
@@ -59,9 +59,9 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 1
+  Exit code: 3221225786
   Command: C:\WINDOWS\system32\cmd.exe
-  Arguments: /d /s /c yarn devserer && yarn dbserver
+  Arguments: /d /s /c roadhog server
   Directory: E:\Desktop\myadmin
   Output:
   

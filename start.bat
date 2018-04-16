@@ -1,0 +1,1 @@
+start  json-server db.json -p 3000  && start roadhog server
